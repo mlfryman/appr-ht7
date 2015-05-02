@@ -19,20 +19,49 @@ define(
             function addCollectible(game)
             {
 
-                var collectible = cGroup.create(game.world.randomX, -100, 'collectible', 0);
+                var collectible = cGroup.create(0, -100, 'collectible', 0);
 
-                collectible.velocity = {x: Math.random() * 10 - 5, y: game.height / 50};
+                collectible.x = (game.width - collectible.width) * Math.random();
+                collectible.y = -collectible.height;
+                collectible.velocity = {x: Math.random() * 10 - 5, y: game.height / 50, r: .2 * Math.random() - .1};
                 collectibles.push(collectible);
 
             }
 
             function updateCollectible(collectible, game)
             {
+                if (collectible.x < 0) {
+                    collectible.x = 0;
+                    if (collectible.velocity.x < 0) {
+                        collectible.velocity.x = -collectible.velocity.x;
+                    }
+                }
+
+                if (collectible.x > game.width - collectible.width) {
+                    collectible.x = game.width - collectible.width;
+                    if(collectible.velocity.x > 0) {
+                        collectible.velocity.x = - collectible.velocity.x;
+                    }
+                }
+
+                collectible.anchor.setTo(.5, .5);
+
                 collectible.x += collectible.velocity.x;
                 collectible.y += collectible.velocity.y;
 
-                if (collectible.y > game.height) {
+                collectible.rotation += collectible.velocity.r;
+
+                if (collectible.y > game.height + collectible.height) {
                     collectible.kill();
+                    removeFromArray(collectibles, collectible);
+                }
+            }
+
+            function removeFromArray(array, member) {
+                for (var i in array) {
+                    if (array[i] === member) {
+                        delete array[i];
+                    }
                 }
             }
 
@@ -43,7 +72,7 @@ define(
                 timer += game._deltaTime;
                 if (timer > interval) {
                     addCollectible(game);
-                    interval = Math.random() * 500;
+                    interval = Math.random() * 20;
                     timer = 0;
                 }
 
