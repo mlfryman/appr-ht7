@@ -15,10 +15,14 @@ define(
 
                 game.load.image('sprite_player', '/assets/img/cactuar.png');
                 game.load.image('collectible', '/assets/img/fire.png');
+                game.load.image('keyboard', '/assets/img/keyboard.png');
+                game.load.image('monitor', '/assets/img/zm-m240w-front-large.jpg');
+                game.load.image('pc', '/assets/img/lenovo-desktop-thinkcentre-m93m93p-tower-main.png');
+                game.load.image('powerbttn', '/assets/img/POwer-Button.jpg');
             };
 
             function startGame() {
-                game.state.start('sprint');
+                game.state.start('emergencyIT');
             }
 
             self.update = function() {
