@@ -1,7 +1,9 @@
 require.config({
     baseUrl: 'js/src',
     paths: {
-        'Phaser': '../vendors/phaser',
+        'Phaser': '../vendors/phaser.min',
+        'p2': '../vendors/phaser.min',
+        'PIKI': '../vendors/phaser.min'
     }
 });
 
