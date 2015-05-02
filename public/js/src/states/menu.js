@@ -19,6 +19,7 @@ define(
                 game.load.image('monitor', '/assets/img/zm-m240w-front-large.jpg');
                 game.load.image('pc', '/assets/img/lenovo-desktop-thinkcentre-m93m93p-tower-main.png');
                 game.load.image('powerbttn', '/assets/img/POwer-Button.jpg');
+                game.load.image('ceo', '/assets/img/ceo.jpg');
             };
 
             function startGame() {
