@@ -1,20 +1,16 @@
 require.config({
-    baseUrl : 'js',
-    paths : {
-        'Phaser' : 'vendors/phaser'
-    },
-    shim : {
-        'Phaser' : {
-            exports : 'Phaser'
-        }
+    baseUrl: 'js/src',
+    paths: {
+        'Phaser': '../vendors/phaser',
     }
 });
 
 require(
     [
-        'Phaser'
+        'game'
     ],
-    function(Phaser) {
-        console.log(Phaser);
+    function(game) {
+        'use strict';
+        game.run();
     }
 );
