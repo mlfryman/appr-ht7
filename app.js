@@ -9,11 +9,11 @@ var http   = require('http'),
             var filepath = path.join.apply(path, ['.', rootDir].concat(req.url.split('/')));
 
             if (fs.existsSync(filepath) && fs.statSync(filepath).isFile()) {
-                res.setHeader('Content-Type', mime.contentType(filepath));
+                res.setHeader('Content-Type', mime.contentType(path.extname(filepath)));
                 res.write(fs.readFileSync(filepath));
             } else if (req.url === '/') {
                 filepath = path.join('.', rootDir, 'index.html');
-                res.setHeader('Content-Type', mime.contentType(filepath));
+                res.setHeader('Content-Type', mime.contentType(path.extname(filepath)));
                 res.write(fs.readFileSync(filepath));
             } else {
                 res.statusCode = 404;
