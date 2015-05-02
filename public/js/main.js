@@ -11,12 +11,14 @@ require(
     [
         'game',
         'states/menu',
-        'states/sprint'
+        'states/sprint',
+        'states/ceoResolution'
     ],
-    function(game, Menu, Sprint) {
+    function(game, Menu, Sprint, ceoResolution) {
         'use strict';
         game.state.add('menu', new Menu(game));
         game.state.add('sprint', new Sprint(game));
+        game.state.add('ceoResolution', new ceoResolution(game, gamedata));
         game.state.start('menu');
     }
 );

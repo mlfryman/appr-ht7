@@ -8,6 +8,7 @@ define(
         return function Menu(game) {
 
             var self = this;
+            var test = "this is your global win text";
 
             self.preload = function() {
                 game.load.image('bg_menu', '/assets/img/starwars_bg.png');
@@ -15,10 +16,11 @@ define(
 
                 game.load.image('sprite_player', '/assets/img/cactuar.png');
                 game.load.image('collectible', '/assets/img/fire.png');
+                game.load.image('ceo', '/assets/img/ceo.jpg');
             };
 
             function startGame() {
-                game.state.start('sprint');
+                game.state.start('Win_CEO');
             }
 
             self.update = function() {
