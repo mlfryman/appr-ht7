@@ -41,7 +41,7 @@ define(
             };
         }
 
-        return new Game();
+        return (new Game()).run();
 
     }
 );
