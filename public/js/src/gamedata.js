@@ -42,8 +42,9 @@ define(
             self.funding = function(delta) {
                 if (typeof delta === 'number') {
                     funding += delta;
+                    funding = clamp(0, funding, targetFunding);
                 }
-                return delta;
+                return funding;
             };
 
             self.shares = function() {
@@ -67,7 +68,16 @@ define(
              * @return
              */
             self.won = function() {
-                return funding >= startingFunding;
+                return funding >= targetFunding;
+            };
+
+            /**
+             * True if you've reached the target funding.
+             *
+             * @return
+             */
+            self.lost = function() {
+                return funding <= 0;
             };
 
             /**
