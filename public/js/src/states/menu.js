@@ -10,15 +10,17 @@ define(
             var self = this;
 
             self.preload = function() {
-                game.load.image('bg_menu', '/assets/img/starwars_bg.png');
+                game.load.image('bg_menu',   '/assets/img/starwars_bg.png');
                 game.load.image('bg_sprint', '/assets/img/starfield_bg.png');
 
                 game.load.image('sprite_player', '/assets/img/cactuar.png');
-                game.load.image('collectible', '/assets/img/fire.png');
+                game.load.image('collectible',   '/assets/img/fire.png');
+                game.load.image('nimbus',        '/assets/img/cloud.png');
+
             };
 
             function startGame() {
-                game.state.start('sprint');
+                game.state.start('cloud');
             }
 
             self.update = function() {
