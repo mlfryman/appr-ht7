@@ -7,20 +7,22 @@ define(
         {
             var self = this;
 
-            function preload()
+            self.states = [];
+
+            self.preload = function()
             {
 
-            }
+            };
 
-            function create()
+            self.create = function()
             {
 
-            }
+            };
 
-            function update()
+            self.update = function()
             {
 
-            }
+            };
 
             self.run = function(){
 
@@ -30,9 +32,9 @@ define(
                     Phaser.AUTO,
                     '',
                     {
-                        preload: preload,
-                        create: create,
-                        update: update
+                        preload: self.preload,
+                        create: self.create,
+                        update: self.update
                     }
                 );
                 return game;
