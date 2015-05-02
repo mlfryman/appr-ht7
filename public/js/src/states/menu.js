@@ -22,7 +22,7 @@ define(
             };
 
             function startGame() {
-                game.state.start('sprint');
+                game.state.start('emergencyIT');
             }
 
             self.update = function() {
