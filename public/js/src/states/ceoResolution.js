@@ -32,7 +32,8 @@ define(
                 ceo.y = game.height / 2;
                 
                 var text = game.add.text(0,0, gamedata.text, { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
-                var btn = game.add.button(0,0,'continue', startSprint, this);
+                var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+                space.onDown.add(startSprint);
             };
 
             function startSprint()

@@ -81,6 +81,10 @@ define(
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
+                var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+                space.onDown.add(begin);
+
+
                 var btn = game.add.button(0,0,'continue', begin, this);
             };
 

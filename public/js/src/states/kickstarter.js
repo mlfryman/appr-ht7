@@ -31,17 +31,22 @@ define(
             {
                 gamedata.gameTimer(win);
 
-                var background = game.add.sprite(0, 0, 'bg_sprint');
-                background.width = game.width;
-                background.height = game.height;
+                game.stage.backgroundColor = 0x88ffcc
 
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
-                var btn = game.add.button(0,0,'donate', donateNow, this);
+                var btn = game.add.button(0,0,'monitor', donateNow, this);
+
+                btn.width *= 8;
+                btn.height *= 8;
+
+                btn.frame = 8;
+
                 btn.anchor.set(.5,.5);
                 btn.x = game.world.centerX;
                 btn.y = game.world.centerY;
+
             };
 
             function win()
