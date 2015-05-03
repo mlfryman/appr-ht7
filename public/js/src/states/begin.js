@@ -12,7 +12,7 @@ define(
                 collectibles = [];
             var count = 0;
 
-            var appNames = new array(
+            var appNames = [
                 "InputSupreme",
                 "MegaWare",
                 "SmartFusion",
@@ -53,7 +53,7 @@ define(
                 "ThreadArray",
                 "CharacterCookie",
                 "BurnerFile"
-            );
+            ];
 
 
             function backToMenu(game)
@@ -91,7 +91,7 @@ define(
 
             function selectName()
             {
-                var appName = appNames[Math.floor(Math.random()*choices.length)];
+                var appName = appNames[Math.floor(Math.random()*appNames.length)];
                 gamedata.appName(appName + ".io");
             }
         };

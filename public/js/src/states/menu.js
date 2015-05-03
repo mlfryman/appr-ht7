@@ -32,7 +32,7 @@ define(
             };
 
             function startGame() {
-                game.state.start('Sprint');
+                game.state.start('Begin');
             }
 
             self.update = function() {

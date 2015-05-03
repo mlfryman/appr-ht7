@@ -201,19 +201,24 @@ define(
                 gamedata.funding(collectable.item.value);
 
                 if (gamedata.won()) {
-                    /** @todo Create random minigame state, and transfer to it. */
+                    win();
                 } else if (gamedata.lost()) {
-                    /** @todo Transition to "sell your shares" state or "Bankrupt" state. */
+                    lose();
                 }
             }
 
             function win()
             {
+                var bankDelta = gamedata.funding - gamedata.startingfunding; 
+                gamedata.bank(bankDelta);
+                gamedata.tragetFundingIncrement();
+                alert(gamedata.bank);
                 game.state.start('CeoInit');
             }
 
             function lose()
             {
+                alert('lost');
                 game.state.start('LoseState');
             }
         };

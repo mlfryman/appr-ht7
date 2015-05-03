@@ -15,9 +15,14 @@ define(
                 funding = startingFunding,
                 shares = 100,
                 multiplier = 1,
-                appName = '';
+                appName = '',
                 time,
-                gameTimerDisplay;
+                gameTimerDisplay,
+                bank;
+            
+            self.startingFunding = function() {
+                return startingFunding;
+            }
 
             /**
              * Creates global timer.
@@ -160,7 +165,19 @@ define(
 
                 return appName;
             }
-        };
 
+            self.bank = function(delta)
+            {
+                if (typeof delta === 'number') {
+                    bank += delta;
+                    bank = clamp(0, bank, 99999999999999);
+                }
+                return bank;            
+            };
+
+            self.tragetFundingIncrement = function() {
+                targetFunding = Math.floor(targetFunding * .1);
+            }
+        };
     }
 );

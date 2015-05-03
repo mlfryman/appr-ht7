@@ -36,5 +36,7 @@ require(
         game.state.add('CeoInit', new CeoInit(game, data));
         game.state.add('LoseState', new LoseState(game, data));
         game.state.add('Begin', new Begin(game, data));
+
+        game.state.start('Menu');
     }
 );
