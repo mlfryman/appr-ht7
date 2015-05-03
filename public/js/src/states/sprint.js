@@ -24,7 +24,8 @@ define(
                 progress,
                 progressCon,
                 operationalCost = 0.05,
-                killList = [];
+                killList = [],
+                sprintMusic;
 
             function backToMenu(game) {
                 game.state.start('menu');
@@ -163,7 +164,7 @@ define(
                 gamedata.initFunding();
                 gamedata.gameTimer(win, 30);
 
-                var sprintMusic = game.add.audio('sprintMusic', 0.4, true);
+                sprintMusic = game.add.audio('sprintMusic', 0.4, true);
                 sprintMusic.play();
 
                 var collectSound = game.add.audio('collectSound', 0.5);
