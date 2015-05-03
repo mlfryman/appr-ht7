@@ -126,6 +126,10 @@ define(
             {
                 game.state.start("LoseState");
             }
+
+            self.initVals = function () {
+                return "this is the init text";
+            }
         };
     }
 );

@@ -34,12 +34,8 @@ define(
                 console.log('Time: ' + _time);
                 time = typeof _time === 'undefined' ? 10 : _time;
                 gameTimerDisplay = game.add.text(game.world.centerX, 100, 'Time: ' + time, { font: '12px Arial', fill: '#ffffff', align: 'center' });
-                game.time.events.add(Phaser.Timer.SECOND * 30, lose, this);
+                game.time.events.add(Phaser.Timer.SECOND * 30, cb, this);
                 game.time.events.loop(Phaser.Timer.SECOND, updateTimer, this);
-
-                if(time == 0) {
-                    cb();
-                }
             };
 
             /**

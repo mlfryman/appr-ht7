@@ -29,6 +29,8 @@ define(
 
             self.create = function(game)
             {
+                gamedata.gameTimer(win);
+
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
                 background.height = game.height;
@@ -62,6 +64,10 @@ define(
             function lose()
             {
                 game.state.start('LoseState');
+            }
+
+            self.initVals = function () {
+                return "this is the init text";
             }
         };
     }

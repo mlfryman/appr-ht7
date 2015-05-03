@@ -14,6 +14,7 @@ define(
                 txtMeter;
 
             self.create = function(game) {
+                gamedata.gameTimer(lose);
                 //- define physics engine
                 game.physics.startSystem(Phaser.Physics.ARCADE);
                 game.physics.arcade.checkCollision.left = true;
@@ -57,7 +58,9 @@ define(
 
             self.update = function(game) {
                 game.physics.arcade.overlap(nimbus, app, rubCloud);
-
+                if (meter > 100) {
+                    win();
+                }
             };
 
             self.render = function(game) {
@@ -95,6 +98,10 @@ define(
             function lose()
             {
                 game.state.start('LoseState');
+            }
+
+            self.initVals = function () {
+                return "this is the init text";
             }
         };
     }

@@ -40,7 +40,7 @@ define(
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
                 ceo.y = 200;
-                text  = game.add.text(0,0, ceoBegin);
+                var text  = game.add.text(0,0, ceoBegin);
                 var btn = game.add.button(0,0,'continue', startNextState, this);
             };
 
@@ -51,12 +51,13 @@ define(
 
             function setUpMyShit() {
                 if (played.length === miniGames.length) {
-                    played = new array();
+                    played = [];
                 }
-                var choices = array();
+                var choices = [];
                 for (var miniGame in miniGames) {
-                    if (played.indexOf(miniGame) === -1) {
-                        choices.push(miniGame);
+                    
+                    if (played.indexOf(miniGames[miniGame]) === -1) {
+                        choices.push(miniGames[miniGame]);
                     }
                 }
                 var index = Math.floor(Math.random()*choices.length);
