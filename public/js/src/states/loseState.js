@@ -12,7 +12,7 @@ define(
                 collectibles = [];
             var count = 0;
 
-            function backToMenu(game)
+            function backToMenu()
             {
                 game.state.start('menu');
             }

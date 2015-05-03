@@ -106,9 +106,11 @@ define(
             }
 
             self.initVals = function () {
-                return "Hey have you heard about the cloud? I think we should use that for something. People like looking at clouds. \n" +
-                "Just rub as much coud dust on the app as you can. This is a cricital client ask and what I beleive to be a best practice \n" +
-                "Get on this right away!";
+                return "Hey have you heard about the cloud? I think we should use that for something. \n"
+                + "People like looking at clouds. Just rub as much cloud \n"
+                + "on the app as you can. This is a cricital client ask and\n"
+                + "what I beleive to be a best practice \n"
+                + "Get on this right away!";
             }
 
             function refreshState()

@@ -31,7 +31,8 @@ define(
                 ceo.x = 300;
                 ceo.y = game.height / 2;
 
-                var text = "Hey thanks for taking care of that for me. That's why I like surrounding myself with people smarter than me. \n" + 
+                var text = "Hey thanks for taking care of that for me.\n"
+                + "That's why I like surrounding myself with people smarter than me. \n" + 
                 "Get back to that tech stuff, I'll order a pizza for you before I leave.";
 
                 var text = game.add.text(0,0, gamedata.text, { font: "15px press_start_kregular", fill: 0x997755, align: "center" });
