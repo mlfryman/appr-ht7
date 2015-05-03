@@ -9,8 +9,8 @@ define(
         return function Begin(game, gamedata) {
             var self = this,
                 cGroup,
-                collectibles = [];
-            var count = 0;
+                collectibles = [],
+                count = 0;
 
             var appNames = [
                 "InputSupreme",
