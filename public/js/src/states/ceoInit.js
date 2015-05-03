@@ -8,7 +8,6 @@ define(
 
         return function ceoInit(game, gamedata) {
             var self     = this;
-            var played   = [];
             var ceoBegin = '';
             var nextGame = '';
 
@@ -43,7 +42,7 @@ define(
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
                 ceo.y = game.height / 2;
-                var text  = game.add.text(0,0, ceoBegin);
+                var text  = game.add.text(0,0, ceoBegin, { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 var btn = game.add.button(0,0,'continue', startNextState, this);
             };
 
@@ -54,12 +53,13 @@ define(
             }
 
             function setUpMyShit() {
+
+                var played = gamedata.miniGamesPlayed();
                 if (played.length === miniGames.length) {
                     played = [];
                 }
                 var choices = [];
                 for (var miniGame in miniGames) {
-                    
                     if (played.indexOf(miniGames[miniGame]) === -1) {
                         choices.push(miniGames[miniGame]);
                     }
@@ -68,6 +68,7 @@ define(
                 played.push(index);
                 nextGame  = choices[index];
                 ceoBegin  = game.state.states[nextGame].initVals();
+                gamedata.miniGamesPlayed(played);
             }
 
             function refreshState()

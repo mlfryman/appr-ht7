@@ -24,18 +24,17 @@ define(
                 leftDown,
                 progress,
                 progressCon,
-                operationalCost = .05;
+                operationalCost = 0.05,
+                killList = [],
+                sprintMusic;
 
-            function backToMenu(game)
-            {
+            function backToMenu(game) {
                 game.state.start('menu');
             }
 
-            function addCollectible(game)
-            {
+            function addCollectible(game) {
 
                 var collectible = cGroup.create(0, -100, 'collectible' + icons.getRandomIndex(), 0);
-
                 collectible.item = getCollectibleData();
 
                 collectible.width *= 3;
@@ -48,8 +47,7 @@ define(
 
             }
 
-            function updateCollectible(collectible, game)
-            {
+            function updateCollectible(collectible, game) {
                 if (collectible.x < collectible.width / 2) {
                     collectible.x = collectible.width / 2;
                     if (collectible.velocity.x < 0) {
@@ -64,7 +62,7 @@ define(
                     }
                 }
 
-                collectible.anchor.setTo(.5, .5);
+                collectible.anchor.setTo(0.5, 0.5);
 
                 collectible.x += collectible.velocity.x;
                 collectible.y += collectible.velocity.y;
@@ -85,9 +83,16 @@ define(
                 }
             }
 
+            function updateKillList() {
+                var y = 40;
+                for (var k in killList) {
+                     var item = game.add.text(k + ' ' + killList[k]);
+                }
+            }
+
             var maxPlayerVelocity = 21;
-            function updatePlayer(game)
-            {
+
+            function updatePlayer(game) {
                 if (leftDown) {
                     player.velocity.x -= 9;
                 } else if (player.velocity.x < 0) {
@@ -128,8 +133,8 @@ define(
             var timer = 0;
             var interval = 200;
             var current = interval;
-            self.update = function(game)
-            {
+
+            self.update = function(game) {
                 timer += game._deltaTime;
                 if (timer > current) {
                     addCollectible(game);
@@ -149,6 +154,8 @@ define(
 
                 progress.height = progressCon.height * gamedata.progress();
                 progress.y = 10 + progressCon.height - progress.height;
+
+                updateKillList();
             };
 
             self.render = function()
@@ -158,11 +165,13 @@ define(
 
             self.create = function(game)
             {
+                gamedata.initFunding();
                 gamedata.gameTimer(win, 30);
 
-                //var background = game.add.sprite(0, 0, 'bg_sprint');
-                //background.width = game.width;
-                //background.height = game.height;
+                sprintMusic = game.add.audio('sprintMusic', 0.4, true);
+                sprintMusic.play();
+
+                var collectSound = game.add.audio('collectSound', 0.5);
 
                 game.stage.backgroundColor = "#ff8888";
 
@@ -205,8 +214,15 @@ define(
             };
 
             function collect(player, collectable) {
-                collectable.kill();
+
+                killList[collectable.item.name] = collectable.item.value;
                 gamedata.funding(collectable.item.value);
+
+                var collectSound = game.add.audio('collectSound', 0.5);
+                collectSound.play();
+
+                collectable.kill();
+
 
                 if (gamedata.won()) {
                     win();
@@ -215,28 +231,28 @@ define(
                 }
             }
 
-            function win()
-            {
+            function win() {
+                sprintMusic.stop();
                 refreshState();
-                var bankDelta = gamedata.funding() - gamedata.startingFunding(); 
+                var bankDelta = gamedata.funding() - gamedata.startingFunding();
                 gamedata.bankDelta(bankDelta);
                 gamedata.tragetFundingIncrement();
                 game.state.start('CeoInit');
             }
 
-            function lose()
-            {
-                alert('lost');
+            function lose() {
+                sprintMusic.stop();
                 refreshState();
                 game.state.start('LoseState');
             }
 
-            function refreshState()
-            {
+            function refreshState() {
+                sprintMusic.stop();
                 game.state.remove("Sprint");
                 var nextSprint = new Sprint(game, gamedata);
                 game.state.add("Sprint", nextSprint);
             }
+
         };
     }
 );

@@ -8,7 +8,11 @@ define(
 
         return function Menu(game, gamedata) {
 
-            var self = this;
+            var self = this,
+                themeMusic,
+                sprintMusic,
+                miniMusic,
+                collectSound;
 
             self.preload = function() {
                 game.load.image('bg_menu',   '/assets/img/starwars_bg.png');
@@ -33,27 +37,42 @@ define(
                 //- Cloud Minigame Assets
                 game.load.spritesheet('nimbus', '/assets/img/cloud2.png', 58, 36);
                 game.load.image('app', '/assets/img/app_folder.png');
-            };
 
-            function startGame() {
-                game.state.start('EmergencyIT');
-            }
+                //- Audio files
+                game.load.audio('themeMusic', '/assets/audio/main_theme.mp3');
+                game.load.audio('sprintMusic', '/assets/audio/ark_theme.mp3');
+                game.load.audio('miniMusic', '/assets/audio/rock_theme.mp3');
+                game.load.audio('collectSound', '/assets/audio/key.wav');
+
+            };
 
             self.update = function() {
 
             };
 
             self.create = function() {
+
+                themeMusic = game.add.audio('themeMusic', 1, true);
+                themeMusic.play();
+
                 var background = game.add.sprite(0, 0, 'bg_menu');
                 background.width = game.width;
                 background.height = game.height;
 
-                game.add.text(0, 0, 'Hello World', {fill: '#ffffff'});
-                game.add.text(0, 40, 'Press spacebar to continue.', {fill: '#ffffff'});
+                var title = game.add.text(game.world.centerX, game.world.centerY -100, 'appr', { font: "75px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                title.anchor.setTo(0.5);
+
+                var instructions = game.add.text(game.world.centerX, game.world.centerY + 100, 'Press SPACE to play', { font: "25px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                instructions.anchor.setTo(0.5);
 
                 var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
                 space.onDown.add(startGame);
             };
+
+            function startGame() {
+                themeMusic.stop();
+                game.state.start('Begin');
+            }
         };
     }
 );

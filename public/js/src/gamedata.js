@@ -18,10 +18,15 @@ define(
                 appName = '',
                 time,
                 gameTimerDisplay,
-                bank;
-            
+                bank,
+                seenGames = [];
+
             self.startingFunding = function() {
                 return startingFunding;
+            }
+
+            self.initFunding = function() {
+                funding = startingFunding;
             }
 
             /**
@@ -31,10 +36,10 @@ define(
              * @return void
              */
             self.gameTimer = function(cb, _time) {
+                _time = typeof _time === 'undefined' ? 10 : _time;
                 console.log('Time: ' + _time);
-                time = typeof _time === 'undefined' ? 10 : _time;
                 gameTimerDisplay = game.add.text(game.world.centerX, 100, 'Time: ' + time, { font: '12px Arial', fill: '#ffffff', align: 'center' });
-                game.time.events.add(Phaser.Timer.SECOND * 30, cb, this);
+                game.time.events.add(Phaser.Timer.SECOND * _time, cb, this);
                 game.time.events.loop(Phaser.Timer.SECOND, updateTimer, this);
             };
 
@@ -44,9 +49,9 @@ define(
              * @return void
              */
             function updateTimer() {
-                console.log(time);
+                console.log('updateTimer() - time: ' + time);
                 time--;
-                gameTimerDisplay.setText('Time: ' + time);
+                gameTimerDisplay.setText('gameTimerDisplay - Time: ' + time);
             }
 
             function lose() {
@@ -173,7 +178,15 @@ define(
             };
 
             self.tragetFundingIncrement = function() {
-                targetFunding = Math.floor(targetFunding * 0.1);
+                targetFunding = Math.floor(targetFunding * 1.1);
+            }
+
+            self.miniGamesPlayed = function (data) {
+                if (typeof data != "undefined") {
+                    seenGames = data;
+                }
+
+                return seenGames;
             }
         };
     }

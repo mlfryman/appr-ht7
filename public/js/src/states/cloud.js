@@ -52,10 +52,10 @@ define(
                 nimbus.events.onDragStop.add(onDragStop, this);
 
                 //- text instructions
-                game.add.text(0, 20, 'The CEO wants to add automation. Quick! Rub some cloud on your app!', {fill: '#ffffff'});
+                game.add.text(0, 20, 'The CEO wants to add automation. Quick! Rub some cloud on your app!', { font: "20px press_start_kregular", fill: "#FCFCFC", align: "center" });
 
                 meter = 0;
-                txtMeter = game.add.text(0, 50, 'Meter: 0', {fill: "#FCFCFC"});
+                txtMeter = game.add.text(0, 50, 'Meter: 0', { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 txtMeter.fixedToCamera = true;
             };
 
