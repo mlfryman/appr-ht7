@@ -73,6 +73,7 @@ define(
 
             self.create = function(game)
             {
+                var name = selectName();
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
                 background.height = game.height;
@@ -85,7 +86,6 @@ define(
 
             function begin()
             {
-                selectName();
                 game.state.start("Sprint");
             }
 
