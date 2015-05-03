@@ -92,16 +92,25 @@ define(
 
             function win()
             {
+                refreshState();
                 game.state.start('CeoResolution');
             }
 
             function lose()
             {
+                refreshState();
                 game.state.start('LoseState');
             }
 
             self.initVals = function () {
                 return "this is the init text";
+            }
+
+            function refreshState()
+            {
+                game.state.remove("Cloud");
+                var nextSprint = new Cloud(game, gamedata);
+                game.state.add("Cloud", nextSprint);
             }
         };
     }

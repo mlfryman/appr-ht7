@@ -46,7 +46,7 @@ define(
 
             function win()
             {
-                self.calculateMoney();
+                calculateMoney();
                 game.state.start('CeoResolution');
             }
 
@@ -58,7 +58,7 @@ define(
             function calculateMoney()
             {
                 var multiplier = (Math.floor(count/20)/10) + 1;
-                gamedata.setMultiplier(multiplier);
+                gamedata.multiplier(multiplier);
             }
 
             function lose()
@@ -68,6 +68,13 @@ define(
 
             self.initVals = function () {
                 return "this is the init text";
+            }
+
+            function refreshState()
+            {
+                game.state.remove("KickStarter");
+                var nextSprint = new KickStarter(game, gamedata);
+                game.state.add("KickStarter", nextSprint);
             }
         };
     }

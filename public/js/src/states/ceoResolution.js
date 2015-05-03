@@ -37,7 +37,15 @@ define(
 
             function startSprint()
             {
+                refreshState();
                 game.state.start("Sprint");
+            }
+
+            function refreshState()
+            {
+                game.state.remove("CeoResolution");
+                var nextState = new ceoResolution(game, gamedata);
+                game.state.add("CeoResolution", nextState);
             }
         };
     }

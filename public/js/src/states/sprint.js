@@ -209,6 +209,7 @@ define(
 
             function win()
             {
+                refreshState();
                 var bankDelta = gamedata.funding() - gamedata.startingFunding(); 
                 gamedata.bankDelta(bankDelta);
                 gamedata.tragetFundingIncrement();
@@ -218,7 +219,15 @@ define(
             function lose()
             {
                 alert('lost');
+                refreshState();
                 game.state.start('LoseState');
+            }
+
+            function refreshState()
+            {
+                game.state.remove("Sprint");
+                var nextSprint = new Sprint(game, gamedata);
+                game.state.add("Sprint", nextSprint);
             }
         };
     }

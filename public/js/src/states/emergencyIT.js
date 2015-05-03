@@ -36,6 +36,7 @@ define(
 
             function win()
             {
+                refreshState();
                 game.state.start("CeoResolution");
             }
 
@@ -93,6 +94,8 @@ define(
 
             self.create = function(game)
             {
+                gamedata.gameTimer(lose);
+
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
                 background.height = game.height;
@@ -124,11 +127,19 @@ define(
 
             function lose()
             {
+                refreshState();
                 game.state.start("LoseState");
             }
 
             self.initVals = function () {
                 return "this is the init text";
+            }
+
+            function refreshState()
+            {
+                game.state.remove("EmergencyIT");
+                var nextSprint = new EmergencyIT(game, gamedata);
+                game.state.add("EmergencyIT", nextSprint);
             }
         };
     }

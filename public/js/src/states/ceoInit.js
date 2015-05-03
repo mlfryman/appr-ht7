@@ -46,6 +46,7 @@ define(
 
             function startNextState()
             {
+                refreshState();
                 game.state.start(nextGame);
             }
 
@@ -64,6 +65,13 @@ define(
                 played.push(index);
                 nextGame  = choices[index];
                 ceoBegin  = game.state.states[nextGame].initVals();
+            }
+
+            function refreshState()
+            {
+                game.state.remove("CeoInit");
+                var nextState = new ceoInit(game, gamedata);
+                game.state.add("CeoInit", nextState);
             }
         };
     }
