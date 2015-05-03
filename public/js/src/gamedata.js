@@ -13,7 +13,8 @@ define(
                 startingFunding = 50,
                 targetFunding = 100,
                 funding = startingFunding,
-                shares = 100;
+                shares = 100,
+                multiplier = 1;
 
             /**
              * Iterates the phasesComplete by one.
@@ -106,6 +107,14 @@ define(
             self.progress = function() {
                 return clamp(0, funding / targetFunding, 1);
             };
+
+            self.multiplier = function(newMultiplier) {
+                if (typeof multiplier != "undefined") {
+                    multiplier = newMultiplier;
+                }
+
+                return multiplier;
+            }
         };
 
     }
