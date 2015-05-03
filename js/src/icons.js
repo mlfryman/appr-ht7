@@ -1,5 +1,5 @@
 define(
-    ['text!assets/Icons.json'],
+    ['text!../../assets/Icons.json'],
     function(icons) {
         'use strict';
         icons = JSON.parse(icons);

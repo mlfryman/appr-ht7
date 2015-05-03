@@ -2,7 +2,7 @@ define(
     [],
     function(){
         return collectibleFactory() {
-            
+
         };
     }
 );
