@@ -15,9 +15,10 @@ require(
         'states/sprint',
         'gamedata',
         'states/emergencyIT',
-        'states/ceoResolution'
+        'states/ceoResolution',
+        'states/cloud'
     ],
-    function(game, Menu, Sprint, GameData, EmergencyIT, CeoResolution) {
+    function(game, Menu, Sprint, GameData, EmergencyIT, CeoResolution, Cloud) {
         'use strict';
 
         var data = new GameData();
@@ -25,6 +26,7 @@ require(
         game.state.add('sprint', new Sprint(game, data));
         game.state.add('emergencyIT', new EmergencyIT(game));
         game.state.add('ceoResolution', new CeoResolution(game, data));
+        game.state.add('cloud', new Cloud(game));
 
         game.state.start('menu');
     }
