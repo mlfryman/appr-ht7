@@ -7,16 +7,13 @@ define(
         'use strict';
 
         return function Cloud() {
-            var self = this,
-            nimbus, app, meter, txtMeter, lastPosition;
+            var self  = this,
+                nimbus,
+                app,
+                meter = 0,
+                txtMeter;
 
-            function backToMenu(game)
-            {
-                game.state.start('menu');
-            }
-
-            self.create = function(game)
-            {
+            self.create = function(game) {
                 //- define physics engine
                 game.physics.startSystem(Phaser.Physics.ARCADE);
                 game.physics.arcade.checkCollision.left = true;
@@ -44,7 +41,6 @@ define(
                 game.physics.arcade.enable(nimbus);
                 nimbus.body.setSize(300, 188, 0, 0);
                 nimbus.body.collideWorldBounds = true;
-                // nimbus.anchor.set(0.5, 0.5);
 
                 nimbus.inputEnabled = true;
                 nimbus.input.enableDrag();
@@ -56,38 +52,40 @@ define(
 
                 meter = 0;
                 txtMeter = game.add.text(0, 50, 'Meter: 0', {fill: "#FCFCFC"});
-                txtMeter.fixedToCamera = true  ;
+                txtMeter.fixedToCamera = true;
             };
 
-            self.update = function(game)
-            {
+            self.update = function(game) {
                 game.physics.arcade.overlap(nimbus, app, rubCloud);
 
             };
 
-            function rubCloud(nimbus, app)
-            {
-                meter += 10;
+            self.render = function(game) {
+                //- game.debug.bodyInfo(nimbus, 32, 32);
+                //- game.debug.body(nimbus);
+                //- game.debug.body(app);
+            };
+
+            function rubCloud(nimbus, app) {
                 txtMeter.text = 'Meter: ' + meter + '%';
-                // alert('Rub that cloud!');
-            };
+                meter += Math.floor(Phaser.Math.distance(nimbus.previousPosition.x, nimbus.previousPosition.y, nimbus.position.x, nimbus.position.y)/100);
+                console.log('Nimbus.previousPosition.x: ' + nimbus.previousPosition.x,
+                            'Nimbus.previousPosition.y: ' + nimbus.previousPosition.y,
+                            'Nimbus.position.x: ' + nimbus.position.x,
+                            'Nimus.position.y: ' + nimbus.position.y);
+            }
 
-            function onDragStart()
-            {
+            function onDragStart() {
                 nimbus.body.moves = false;
-            };
+            }
 
-            function onDragStop()
-            {
+            function onDragStop() {
                 nimbus.body.moves = true;
-            };
+            }
 
-            self.render = function(game)
-            {
-                game.debug.bodyInfo(nimbus, 32, 32);
-                game.debug.body(nimbus);
-                game.debug.body(app);
-            };
+            function backToMenu(game) {
+                game.state.start('menu');
+            }
         };
     }
 );
