@@ -16,7 +16,7 @@ define(
                 game.load.image('sprite_player', '/assets/img/cactuar.png');
                 game.load.image('collectible',   '/assets/img/fire.png');
                 game.load.image('nimbus',        '/assets/img/cloud.png');
-
+                game.load.image('app',           '/assets/img/app.png');
             };
 
             function startGame() {
