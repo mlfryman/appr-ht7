@@ -10,7 +10,8 @@ define(
             var self = this,
                 cGroup,
                 collectibles = [];
-            var count = 0;
+            var count = 0,
+                btn;
 
             function backToMenu(game)
             {
@@ -36,7 +37,7 @@ define(
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
-                var btn = game.add.button(0,0,'monitor', donateNow, this);
+                btn = game.add.button(0,0,'monitor', donateNow, this);
 
                 btn.width *= 8;
                 btn.height *= 8;
@@ -55,9 +56,18 @@ define(
                 game.state.start('CeoResolution');
             }
 
+            var ref = false;
             function donateNow()
             {
                 count++;
+                if (ref === false) {
+                    btn.frame = 9;
+                    ref = true;
+                    setTimeout(function() {
+                        btn.frame = 8;
+                        ref = false;
+                    });
+                }
             }
 
             function calculateMoney()
