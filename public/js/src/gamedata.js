@@ -160,7 +160,7 @@ define(
             }
 
             self.appName = function(newAppName) {
-                if (typeof appName != "undefined") {
+                if (typeof newAppName != "undefined") {
                     appName = newAppName;
                 }
 

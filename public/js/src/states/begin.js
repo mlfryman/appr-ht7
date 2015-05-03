@@ -73,7 +73,8 @@ define(
 
             self.create = function(game)
             {
-                var name = selectName();
+                selectName();
+                var name = gamedata.appName();
 
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
@@ -82,7 +83,7 @@ define(
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
-                var text =  "Welcome to " + gamedata.name + "! We do things a little differenly around here, but you\'ll get the hang of it.";
+                var text =  "Welcome to " + name + "! We do things a little differenly around here, but you\'ll get the hang of it.";
 
                 var welcome = game.add.text(game.world.centerX,
                                             game.world.centerY + 100,
