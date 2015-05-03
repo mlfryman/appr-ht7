@@ -154,6 +154,7 @@ define(
 
             self.create = function(game)
             {
+                gamedata.initFunding();
                 gamedata.gameTimer(win, 30);
 
                 var background = game.add.sprite(0, 0, 'bg_sprint');
@@ -218,7 +219,6 @@ define(
 
             function lose()
             {
-                alert('lost');
                 refreshState();
                 game.state.start('LoseState');
             }

@@ -52,7 +52,6 @@ define(
             function setUpMyShit() {
 
                 var played = gamedata.miniGamesPlayed();
-                alert(played);
                 if (played.length === miniGames.length) {
                     played = [];
                 }

@@ -25,6 +25,10 @@ define(
                 return startingFunding;
             }
 
+            self.initFunding = function() {
+                funding = startingFunding;
+            }
+
             /**
              * Creates global timer.
              *
