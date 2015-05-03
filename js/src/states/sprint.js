@@ -1,7 +1,7 @@
 define(
     [
         'Phaser',
-        'text!/assets/SeedData.json',
+        'text!assets/SeedData.json',
         'icons'
     ],
     function(Phaser, seed, icons)
@@ -97,7 +97,7 @@ define(
                     if (killList[k] <= 0) {
                         var color = {fill: "#ff0000"};
                     } else {
-                        var color = {fill: "#00ff00"}; 
+                        var color = {fill: "#00ff00"};
                     }
 
                      var item = game.add.text(k + ' ' + killList[k], color);
