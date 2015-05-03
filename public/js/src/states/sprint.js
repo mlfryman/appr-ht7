@@ -26,7 +26,9 @@ define(
                 progressCon,
                 operationalCost = 0.05,
                 killList = [],
-                sprintMusic;
+                killText = [],
+                sprintMusic,
+                collectSound;
 
             function backToMenu(game) {
                 game.state.start('menu');
@@ -84,9 +86,26 @@ define(
             }
 
             function updateKillList() {
-                var y = 40;
+                for (var index in killText) {
+                    if (typeof text != "undefined") {
+                        killText[index].y = killText[index].y + 10;
+                    }
+                }
+                var y = game.height - 80;
                 for (var k in killList) {
-                     var item = game.add.text(k + ' ' + killList[k]);
+
+                    if (killList[k] <= 0) {
+                        var color = {fill: "#ff0000"};
+                    } else {
+                        var color = {fill: "#00ff00"}; 
+                    }
+
+                     var item = game.add.text(k + ' ' + killList[k], color);
+                     console.log(k);
+                     item.x = game.width - 100;
+                     item.y = y;
+                     y = y - 10;
+                     killText.push(item);
                 }
             }
 
@@ -155,7 +174,7 @@ define(
                 progress.height = progressCon.height * gamedata.progress();
                 progress.y = 10 + progressCon.height - progress.height;
 
-                updateKillList();
+               // updateKillList();
             };
 
             self.render = function()
@@ -171,7 +190,7 @@ define(
                 sprintMusic = game.add.audio('sprintMusic', 0.4, true);
                 sprintMusic.play();
 
-                var collectSound = game.add.audio('collectSound', 0.5);
+                collectSound = game.add.audio('collectSound', 0.5);
 
                 game.stage.backgroundColor = "#ff8888";
 
@@ -215,10 +234,16 @@ define(
 
             function collect(player, collectable) {
 
-                killList[collectable.item.name] = collectable.item.value;
+//                if (killList.length >= 10) {
+//                    killList.shift();
+//                    killText[0].kill();
+ //                   killText.pop();
+  //              }
+
+
+//                killList[collectable.item.name] = collectable.item.value;
                 gamedata.funding(collectable.item.value);
 
-                var collectSound = game.add.audio('collectSound', 0.5);
                 collectSound.play();
 
                 collectable.kill();
