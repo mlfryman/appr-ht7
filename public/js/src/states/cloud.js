@@ -21,17 +21,18 @@ define(
                 game.physics.arcade.checkCollision.right = true;
 
                 //- draw background
-                var background = game.add.sprite(0, 0, 'bg_sprint');
-                background.width = game.width;
-                background.height = game.height;
+                game.stage.backgroundColor = 0xbb88cc;
 
                 //- define app properties and enable physics
                 app = game.add.sprite(game.world.centerX, game.world.centerY, 'app');
                 game.physics.arcade.enable(app);
-                app.body.setSize(450, 450, 0, 0);
+                app.body.setSize(app.width, app.height, 0, 0);
+                app.width *= 3;
+                app.height *= 3;
                 app.body.collideWorldBounds = true;
                 app.body.immovable = true;
                 app.anchor.set(0.5, 0.5);
+
 
                 //- enable escape key
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
@@ -40,7 +41,9 @@ define(
                 //- define cloud properties and enable physics
                 nimbus = game.add.sprite(game.world.centerX - 750, game.world.centerY - 150, 'nimbus');
                 game.physics.arcade.enable(nimbus);
-                nimbus.body.setSize(300, 188, 0, 0);
+                nimbus.body.setSize(nimbus.width, nimbus.height, 0, 0);
+                nimbus.width *= 3;
+                nimbus.height *= 3;
                 nimbus.body.collideWorldBounds = true;
 
                 nimbus.inputEnabled = true;
@@ -64,9 +67,9 @@ define(
             };
 
             self.render = function(game) {
-                //- game.debug.bodyInfo(nimbus, 32, 32);
-                //- game.debug.body(nimbus);
-                //- game.debug.body(app);
+                //game.debug.bodyInfo(nimbus, 32, 32);
+                //game.debug.body(nimbus);
+                //game.debug.body(app);
             };
 
             function rubCloud(nimbus, app) {

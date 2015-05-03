@@ -35,7 +35,9 @@ define(
                         preload: self.preload,
                         create: self.create,
                         update: self.update
-                    }
+                    },
+                    false,
+                    false
                 );
                 return game;
             };

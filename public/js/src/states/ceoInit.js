@@ -36,10 +36,13 @@ define(
             self.create = function(game)
             {
                 setUpMyShit();
+                game.stage.backgroundColor = 0xcceeff;
                 var ceo = game.add.image(0,0,'ceo');
+                ceo.width *= 3;
+                ceo.height *= 3;
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
-                ceo.y = 200;
+                ceo.y = game.height / 2;
                 var text  = game.add.text(0,0, ceoBegin);
                 var btn = game.add.button(0,0,'continue', startNextState, this);
             };

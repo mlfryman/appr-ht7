@@ -1,8 +1,9 @@
 define(
     [
-        'Phaser'
+        'Phaser',
+        'icons'
     ],
-    function(Phaser) {
+    function(Phaser, icons) {
         'use strict';
 
         return function Menu(game, gamedata) {
@@ -13,26 +14,29 @@ define(
                 game.load.image('bg_menu',   '/assets/img/starwars_bg.png');
 
                 //- Sprint Assets
-                game.load.image('bg_sprint', '/assets/img/starfield_bg.png');
-                game.load.image('sprite_player', '/assets/img/cactuar.png');
-                game.load.image('collectible', '/assets/img/fire.png');
+                game.load.image('sprite_player', '/assets/img/app_folder.png');
+                icons.each(function(icon, index){
+                    game.load.image('collectible' + index, '/assets/img/icons/' + icon + '.png');
+                });
+
+                game.load.image('progress_border', '/assets/img/progress_border.png');
+                game.load.image('progress_bar', '/assets/img/progress_bar.png');
 
                 //- Emergency IT Minigame Assets
                 game.load.image('keyboard', '/assets/img/keyboard.png');
-                game.load.image('monitor', '/assets/img/zm-m240w-front-large.jpg');
-                game.load.image('pc', '/assets/img/lenovo-desktop-thinkcentre-m93m93p-tower-main.png');
-                game.load.image('powerbttn', '/assets/img/POwer-Button.jpg');
+                game.load.spritesheet('monitor', '/assets/img/monitor_spritesheet.png', 53, 51);
+                game.load.spritesheet('pc', '/assets/img/tower_spritesheet.png', 27, 51);
 
                 //- CEO Assets
-                game.load.image('ceo', '/assets/img/ceo.jpg');
+                game.load.image('ceo', '/assets/img/ceo.png');
 
                 //- Cloud Minigame Assets
-                game.load.image('nimbus', '/assets/img/cloud.png');
-                game.load.image('app', '/assets/img/app.png');
+                game.load.spritesheet('nimbus', '/assets/img/cloud2.png', 58, 36);
+                game.load.image('app', '/assets/img/app_folder.png');
             };
 
             function startGame() {
-                game.state.start('Begin');
+                game.state.start('EmergencyIT');
             }
 
             self.update = function() {

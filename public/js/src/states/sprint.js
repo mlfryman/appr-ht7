@@ -1,9 +1,10 @@
 define(
     [
         'Phaser',
-        'text!/assets/SeedData.json'
+        'text!/assets/SeedData.json',
+        'icons'
     ],
-    function(Phaser, seed)
+    function(Phaser, seed, icons)
     {
         'use strict';
 
@@ -33,9 +34,12 @@ define(
             function addCollectible(game)
             {
 
-                var collectible = cGroup.create(0, -100, 'collectible', 0);
+                var collectible = cGroup.create(0, -100, 'collectible' + icons.getRandomIndex(), 0);
 
                 collectible.item = getCollectibleData();
+
+                collectible.width *= 3;
+                collectible.height *= 3;
 
                 collectible.x = (game.width - collectible.width) * Math.random();
                 collectible.y = -collectible.height;
@@ -156,9 +160,11 @@ define(
             {
                 gamedata.gameTimer(win, 30);
 
-                var background = game.add.sprite(0, 0, 'bg_sprint');
-                background.width = game.width;
-                background.height = game.height;
+                //var background = game.add.sprite(0, 0, 'bg_sprint');
+                //background.width = game.width;
+                //background.height = game.height;
+
+                game.stage.backgroundColor = "#ff8888";
 
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
@@ -170,7 +176,9 @@ define(
                 }
 
                 player = game.add.sprite(game.width / 2, game.height, 'sprite_player');
-                player.y -= player.height * .8;
+                player.width *= 3;
+                player.height *= 3;
+                player.y -= player.height + 10;
                 player.x -= player.width / 2;
                 player.enableBody = true;
 
@@ -188,7 +196,7 @@ define(
                 game.physics.arcade.enable(player);
                 player.enableBody = true;
 
-                progressCon = game.add.sprite(10, 10, 'progress_container');
+                progressCon = game.add.sprite(10, 10, 'progress_border');
                 progressCon.height = game.height - 20;
                 progressCon.width = 20;
 

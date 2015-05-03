@@ -23,14 +23,13 @@ define(
 
             self.create = function(game)
             {
-                var background = game.add.sprite(0, 0, 'bg_sprint');
-                background.width = game.width;
-                background.height = game.height;
-
+                game.stage.backgroundColor = 0xffeecc;
                 var ceo = game.add.image(0,0,'ceo');
+                ceo.width *= 3;
+                ceo.height *= 3;
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
-                ceo.y = 200;
+                ceo.y = game.height / 2;
                 var text = game.add.text(0,0, gamedata.text);
                 var btn = game.add.button(0,0,'continue', startSprint, this);
             };

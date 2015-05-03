@@ -96,32 +96,43 @@ define(
             {
                 gamedata.gameTimer(lose);
 
-                var background = game.add.sprite(0, 0, 'bg_sprint');
-                background.width = game.width;
-                background.height = game.height;
+                game.stage.backgroundColor = 0x4466aa;
 
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
-                var keyboard = game.add.button(0,0,'keyboard', errorFlash, this);
-                keyboard.x = game.width/2 - keyboard.width/2 + 250;
-                keyboard.y = game.height/2 - keyboard.height/2 - 300;
-
                 monitor = game.add.image(0,0, 'monitor');
-                monitor.width = 600;
-                monitor.height = 400;
-                monitor.x = game.width/2 - monitor.width/2 + 250;
-                monitor.y = game.height/2 - monitor.height/2 + 100;
+                monitor.width *= 5;
+                monitor.height *= 5;
+                monitor.x = game.width/2 - monitor.width;
+                monitor.y = game.height/2 - monitor.height/2;
 
-                var desktop = game.add.image(0,0, 'pc');
-                desktop.x = game.width/2 - desktop.width/2 - 250;
-                desktop.y = game.height/2 - desktop.height + 150;
+                var keyboard = game.add.button(0,0,'keyboard', errorFlash, this);
 
+                keyboard.width *= 5;
+                keyboard.height *= 5;
+
+                keyboard.x = game.width/2 - keyboard.width/2 - monitor.width/2;
+                keyboard.y = game.height/2 - keyboard.height/2 + monitor.height/2;
+
+                var desktop = game.add.button(0, 0, 'pc', bttnClick, this);
+
+                desktop.width *= 5;
+                desktop.height *= 5;
+
+                desktop.x = game.width/2 - desktop.width + monitor.width/2 + 10;;
+                desktop.y = game.height/2 - desktop.height/2;
+                
+                var mod = (monitor.width) / 2;
+                desktop.x += mod;
+                monitor.x += mod;
+                keyboard.x += mod;
+                /*
                 var bttn = game.add.button(0,0, 'powerbttn', bttnClick, this);
                 bttn.width = 100;
                 bttn.height = 100;
                 bttn.x = 200;
-                bttn.y = 200;
+                bttn.y = 200;*/
 
             };
 
