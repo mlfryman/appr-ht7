@@ -5,7 +5,7 @@ define(
     function(Phaser) {
         'use strict';
 
-        return function Menu(game) {
+        return function Menu(game, gamedata) {
 
             var self = this;
 

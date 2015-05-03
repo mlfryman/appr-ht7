@@ -6,7 +6,7 @@ define(
     {
         'use strict';
 
-        return function Cloud() {
+        return function Cloud(game, gamedata) {
             var self  = this,
                 nimbus,
                 app,

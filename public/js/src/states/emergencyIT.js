@@ -6,7 +6,7 @@ define(
     {
         'use strict';
 
-        return function EmergencyIT(game) {
+        return function EmergencyIT(game, gamedata) {
             var self = this,
                 cGroup,
                 collectibles = [];

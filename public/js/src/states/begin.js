@@ -6,7 +6,7 @@ define(
     {
         'use strict';
 
-        return function KickStarter(game, gamedata) {
+        return function Begin(game, gamedata) {
             var self = this,
                 cGroup,
                 collectibles = [];
