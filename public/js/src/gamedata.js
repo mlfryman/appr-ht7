@@ -36,10 +36,10 @@ define(
              * @return void
              */
             self.gameTimer = function(cb, _time) {
-                _time = typeof _time === 'undefined' ? 10 : _time;
-                console.log('Time: ' + _time);
-                gameTimerDisplay = game.add.text(game.world.centerX, 100, 'Time: ' + time, { font: '12px Arial', fill: '#ffffff', align: 'center' });
-                game.time.events.add(Phaser.Timer.SECOND * _time, cb, this);
+                time = typeof _time === 'undefined' ? 10 : _time;
+                gameTimerDisplay = game.add.text(game.world.centerX, 100, time, { font: '50px press_start_kregular', fill: '#ffffff', align: 'center' });
+                gameTimerDisplay.anchor.set(.5, .5);
+                game.time.events.add(Phaser.Timer.SECOND * time, cb, this);
                 game.time.events.loop(Phaser.Timer.SECOND, updateTimer, this);
             };
 
@@ -49,9 +49,8 @@ define(
              * @return void
              */
             function updateTimer() {
-                console.log('updateTimer() - time: ' + time);
                 time--;
-                gameTimerDisplay.setText('gameTimerDisplay - Time: ' + time);
+                gameTimerDisplay.setText(time);
             }
 
             function lose() {

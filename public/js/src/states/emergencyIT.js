@@ -10,10 +10,12 @@ define(
             var self = this,
                 cGroup,
                 collectibles = [];
-            var monitor;        
+            var monitor;
+            var desktop;       
             var text;
             var timer = 0;
             var times = 0;
+            var winTimer;
 
             function backToMenu()
             {
@@ -25,7 +27,6 @@ define(
             {
                 if (clickCount >= 1) {
                     restartingFlash();
-                    setTimeout(win, 2000);
                 }
 
                 if (clickCount < 1) {
@@ -49,23 +50,50 @@ define(
                 text.y = monitor.y + monitor.height/2; 
             }
 
+            var errorTimes = 0;
             function errorFlash()
             {
-                if (typeof text !== 'undefined') {
-                   text.kill();
-                   text  = undefined; 
+                errorTimes ++;
+
+                if (errorTimes < 3) {
+                    monitor.frame = 2;
+                } else if (errorTimes < 5) {
+                    monitor.frame = 3;
+                } else {
+                    monitor.frame = 4;
+                    tower.frame = 1;
+                    clearTimeout(winTimer);
+                    winTimer = setTimeout(lose, 2000);
                 }
-                setText("ERROR!", {fill: "#ff0000"});
             }
 
+            var isShuttingDown = false;
+            var isShutDown = false;
             function shuttingDownFlash()
             {
-                setText("shutting Down...", {fill: "#00ff00"});
+                isShuttingDown = true;
+                monitor.frame = 6;
+                setTimeout(function(){
+                    isShuttingDown = false;
+                    isShutDown = true;
+                    monitor.frame = 0;
+                    desktop.frame = 2;
+                }, 2000);
+                //setText("shutting Down...", {fill: "#00ff00"});
             }
 
             function restartingFlash()
             {
-                setText("Booting Up....", {fill: "#00ff00"});
+                if (isShutDown) {
+                    monitor.frame = 7;
+                    desktop.frame = 0;
+                    setTimeout(function(){
+                        monitor.frame = 1;
+                        clearTimeout(winTimer);
+                        winTimer = setTimeout(win, 1000);
+                    }, 2000);
+                }
+                //setText("Booting Up....", {fill: "#00ff00"});
             }
 
 
@@ -82,7 +110,7 @@ define(
                             timer = 0;
                             text.visible = !text.visible;
                             times++;
-                        } 
+                        }
                     }
                 }
             };
@@ -102,6 +130,7 @@ define(
                 esc.onDown.add(backToMenu);
 
                 monitor = game.add.image(0,0, 'monitor');
+                monitor.frame = 1;
                 monitor.width *= 5;
                 monitor.height *= 5;
                 monitor.x = game.width/2 - monitor.width;
@@ -115,7 +144,7 @@ define(
                 keyboard.x = game.width/2 - keyboard.width/2 - monitor.width/2;
                 keyboard.y = game.height/2 - keyboard.height/2 + monitor.height/2;
 
-                var desktop = game.add.button(0, 0, 'pc', bttnClick, this);
+                desktop = game.add.button(0, 0, 'pc', bttnClick, this);
 
                 desktop.width *= 5;
                 desktop.height *= 5;

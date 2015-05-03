@@ -74,14 +74,13 @@ define(
             self.create = function(game)
             {
                 var name = selectName();
-                var background = game.add.sprite(0, 0, 'bg_sprint');
-                background.width = game.width;
-                background.height = game.height;
+                game.stage.backgroundColor = 0x333333;
 
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
-                var btn = game.add.button(0,0,'continue', begin, this);
+                var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+                space.onDown.add(begin);
             };
 
             function begin()

@@ -50,19 +50,40 @@ define(
 
             };
 
+            var bgInterval,
+                color = 0x000000;
+            function manageBackground(){
+                var then = Date.now();
+                bgInterval = setInterval(function() {
+                    var now = Date.now(),
+                        delta = now - then;
+
+                    game.stage.backgroundColor = color++;
+
+                    now = then;
+
+                }, 10);
+            }
+
+            function stopBackground(){
+                clearInterval(bgInterval);
+            }
+
             self.create = function() {
 
                 themeMusic = game.add.audio('themeMusic', 1, true);
                 themeMusic.play();
 
-                var background = game.add.sprite(0, 0, 'bg_menu');
-                background.width = game.width;
-                background.height = game.height;
+                manageBackground();
 
-                var title = game.add.text(game.world.centerX, game.world.centerY -100, 'appr', { font: "75px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                /*var background = game.add.sprite(0, 0, 'bg_menu');
+                background.width = game.width;
+                background.height = game.height;*/
+
+                var title = game.add.text(game.world.centerX, game.world.centerY -50, 'appr', { font: "100px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 title.anchor.setTo(0.5);
 
-                var instructions = game.add.text(game.world.centerX, game.world.centerY + 100, 'Press SPACE to play', { font: "25px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                var instructions = game.add.text(game.world.centerX, game.world.centerY + 50, 'Press SPACE to play', { font: "20px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 instructions.anchor.setTo(0.5);
 
                 var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -71,6 +92,7 @@ define(
 
             function startGame() {
                 themeMusic.stop();
+                stopBackground();
                 game.state.start('Begin');
             }
         };
