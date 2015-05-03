@@ -204,6 +204,11 @@ define(
                     /** @todo Transition to "sell your shares" state or "Bankrupt" state. */
                 }
             }
+
+            function win()
+            {
+                game.state.start('CeoInit');
+            }
         };
     }
 );

@@ -86,6 +86,11 @@ define(
             function backToMenu(game) {
                 game.state.start('menu');
             }
+
+            function win()
+            {
+                game.state.start("CeoResolution");
+            }
         };
     }
 );

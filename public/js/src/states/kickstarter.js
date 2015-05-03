@@ -42,6 +42,12 @@ define(
                 btn.y = game.world.centerY;
             };
 
+            function win()
+            {
+                self.calculateMoney();
+                game.state.start("CeoResolution");
+            }
+
             function donateNow()
             {
                 count++;

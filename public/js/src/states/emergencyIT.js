@@ -36,7 +36,7 @@ define(
 
             function win()
             {
-                alert('you won');
+                game.state.start("CeoResolution");
             }
 
 
