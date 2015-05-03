@@ -103,8 +103,10 @@ define(
                                             { font: "20px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 welcome.anchor.setTo(0.5);
 
-                var go = game.add.text(game.world.centerX, game.world.centerY + 400,'Press SPACE to CONTINUE', { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                var go = game.add.text(game.world.centerX, game.height,'Press SPACE to CONTINUE', { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 go.anchor.setTo(0.5);
+
+                go.y -= go.height + 20;
             };
 
             function begin()
