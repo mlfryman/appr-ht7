@@ -36,7 +36,7 @@ define(
 
             function win()
             {
-                alert('you won');
+                game.state.start("CeoResolution");
             }
 
 
@@ -121,6 +121,11 @@ define(
                 bttn.y = 200;
 
             };
+
+            function lose()
+            {
+                game.state.start("LoseState");
+            }
         };
     }
 );

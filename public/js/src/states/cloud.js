@@ -86,6 +86,16 @@ define(
             function backToMenu(game) {
                 game.state.start('menu');
             }
+
+            function win()
+            {
+                game.state.start("CeoResolution");
+            }
+
+            function lose(
+            {
+                game.state.start("LoseState");
+            })
         };
     }
 );

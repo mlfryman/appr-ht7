@@ -13,8 +13,9 @@ define(
             var nextGame = '';
 
             var miniGames = new array(
-                EmergencyIT,
-                KickStarter
+                "EmergencyIT",
+                "KickStarter",
+                "Cloud"
             );
 
             function backToMenu(game)
@@ -40,6 +41,7 @@ define(
                 ceo.x = 300;
                 ceo.y = 200;
                 text  = game.add.text(0,0, ceoBegin);
+                var btn = game.add.button(0,0,'continue', startNextState, this);
             };
 
             function startNextState()

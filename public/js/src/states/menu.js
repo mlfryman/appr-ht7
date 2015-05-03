@@ -32,7 +32,7 @@ define(
             };
 
             function startGame() {
-                game.state.start('cloud');
+                game.state.start('Sprint');
             }
 
             self.update = function() {

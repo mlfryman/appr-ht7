@@ -32,7 +32,13 @@ define(
                 ceo.x = 300;
                 ceo.y = 200;
                 text = game.add.text(0,0, gamedata.text);
+                var btn = game.add.button(0,0,'continue', donateNow, this);
             };
+
+            function startSprint()
+            {
+                game.state.start("Sprint");
+            }
         };
     }
 );
