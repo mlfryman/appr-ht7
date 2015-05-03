@@ -31,7 +31,7 @@ define(
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
                 ceo.y = 200;
-                var text = game.add.text(0,0, gamedata.text);
+                var text = game.add.text(0,0, gamedata.text, { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 var btn = game.add.button(0,0,'continue', startSprint, this);
             };
 

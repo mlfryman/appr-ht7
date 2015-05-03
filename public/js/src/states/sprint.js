@@ -60,7 +60,7 @@ define(
                     }
                 }
 
-                collectible.anchor.setTo(.5, .5);
+                collectible.anchor.setTo(0.5, 0.5);
 
                 collectible.x += collectible.velocity.x;
                 collectible.y += collectible.velocity.y;
@@ -156,6 +156,12 @@ define(
             {
                 gamedata.gameTimer(win, 30);
 
+                sprintMusic = game.add.audio('sprintMusic', 0.4, true);
+                sprintMusic.play();
+
+                collectSound = game.add.audio('collegit actSound', 0.5);
+
+
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
                 background.height = game.height;
@@ -199,6 +205,7 @@ define(
             function collect(player, collectable) {
                 collectable.kill();
                 gamedata.funding(collectable.item.value);
+                collectSound.play();
 
                 if (gamedata.won()) {
                     win();
@@ -209,8 +216,9 @@ define(
 
             function win()
             {
+                sprintMusic.stop();
                 refreshState();
-                var bankDelta = gamedata.funding() - gamedata.startingFunding(); 
+                var bankDelta = gamedata.funding() - gamedata.startingFunding();
                 gamedata.bankDelta(bankDelta);
                 gamedata.tragetFundingIncrement();
                 game.state.start('CeoInit');
@@ -218,6 +226,7 @@ define(
 
             function lose()
             {
+                sprintMusic.stop();
                 alert('lost');
                 refreshState();
                 game.state.start('LoseState');
@@ -225,6 +234,7 @@ define(
 
             function refreshState()
             {
+                sprintMusic.stop();
                 game.state.remove("Sprint");
                 var nextSprint = new Sprint(game, gamedata);
                 game.state.add("Sprint", nextSprint);
