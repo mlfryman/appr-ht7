@@ -106,7 +106,9 @@ define(
             }
 
             self.initVals = function () {
-                return "this is the init text";
+                return "Hey have you heard about the cloud? I think we should use that for something. People like looking at clouds. \n" +
+                "Just rub as much coud dust on the app as you can. This is a cricital client ask and what I beleive to be a best practice \n" +
+                "Get on this right away!";
             }
 
             function refreshState()
