@@ -14,7 +14,8 @@ define(
                 targetFunding = 100,
                 funding = startingFunding,
                 shares = 100,
-                multiplier = 1;
+                multiplier = 1,
+                appName = '';
 
             /**
              * Iterates the phasesComplete by one.
@@ -114,6 +115,14 @@ define(
                 }
 
                 return multiplier;
+            }
+
+            self.appName = function(newAppName) {
+                if (typeof appName != "undefined") {
+                    appName = newAppName;
+                }
+
+                return appName;
             }
         };
 
