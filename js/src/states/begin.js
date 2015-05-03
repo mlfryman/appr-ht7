@@ -87,7 +87,7 @@ define(
                 var title = game.add.text(game.world.centerX,
                                             game.world.centerY - 100,
                                             "Welcome to " + name + "! \n" ,
-                                            { font: "50px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                                            { font: "40px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 title.anchor.setTo(0.5);
 
                 var text = "We've got enough funding for maybe one sprint. \n" +
