@@ -19,7 +19,7 @@ define(
                 time,
                 gameTimerDisplay,
                 bank;
-
+            
             self.startingFunding = function() {
                 return startingFunding;
             }
@@ -166,9 +166,8 @@ define(
                 return appName;
             }
 
-            self.bank = function(delta)
+            self.bankDelta = function(delta)
             {
-
                 if (typeof delta === 'number') {
                     bank += delta;
                     bank = clamp(0, bank, 99999999999999);

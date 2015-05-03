@@ -209,12 +209,9 @@ define(
 
             function win()
             {
-                var bankDelta = gamedata.funding - gamedata.startingfunding;
-                console.log('bankDelta: ' + bankDelta);
-                gamedata.bank(bankDelta);
+                var bankDelta = gamedata.funding() - gamedata.startingFunding(); 
+                gamedata.bankDelta(bankDelta);
                 gamedata.tragetFundingIncrement();
-                console.log('GameData.bank: ' + gamedata.bank);
-                alert(gamedata.bank);
                 game.state.start('CeoInit');
             }
 
