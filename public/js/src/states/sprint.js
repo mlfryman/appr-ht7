@@ -154,6 +154,7 @@ define(
 
             self.create = function(game)
             {
+                gamedata.initFunding();
                 gamedata.gameTimer(win, 30);
 
                 sprintMusic = game.add.audio('sprintMusic', 0.4, true);
@@ -227,7 +228,6 @@ define(
             function lose()
             {
                 sprintMusic.stop();
-                alert('lost');
                 refreshState();
                 game.state.start('LoseState');
             }

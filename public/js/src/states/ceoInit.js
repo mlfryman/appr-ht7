@@ -8,7 +8,6 @@ define(
 
         return function ceoInit(game, gamedata) {
             var self     = this;
-            var played   = [];
             var ceoBegin = '';
             var nextGame = '';
 
@@ -51,12 +50,13 @@ define(
             }
 
             function setUpMyShit() {
+
+                var played = gamedata.miniGamesPlayed();
                 if (played.length === miniGames.length) {
                     played = [];
                 }
                 var choices = [];
                 for (var miniGame in miniGames) {
-
                     if (played.indexOf(miniGames[miniGame]) === -1) {
                         choices.push(miniGames[miniGame]);
                     }
@@ -65,6 +65,7 @@ define(
                 played.push(index);
                 nextGame  = choices[index];
                 ceoBegin  = game.state.states[nextGame].initVals();
+                gamedata.miniGamesPlayed(played);
             }
 
             function refreshState()
