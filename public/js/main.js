@@ -10,7 +10,6 @@ require.config({
 
 require(
     [
-        'Phaser',
         'game',
         'states/menu',
         'states/sprint',
@@ -21,7 +20,7 @@ require(
         'states/kickstarter',
         'states/ceoInit',
         'states/loseState',
-        'states/begin',
+        'states/begin'
     ],
     function(game, Menu, Sprint, GameData, EmergencyIT, CeoResolution, Cloud, KickStarter, CeoInit, LoseState, Begin) {
         'use strict';
