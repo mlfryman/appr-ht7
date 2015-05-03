@@ -154,6 +154,8 @@ define(
 
             self.create = function(game)
             {
+                gamedata.timer(30);
+
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
                 background.height = game.height;

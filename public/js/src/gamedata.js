@@ -20,6 +20,7 @@ define(
             /**
              * Creates global timer.
              *
+             * @param
              * @return void
              */
             self.timer = function(time) {
