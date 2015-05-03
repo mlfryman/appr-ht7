@@ -32,7 +32,27 @@ define(
                 "OverArray",
                 "SkilletColumn",
                 "BlogChocolate",
-                "FoldCoder"
+                "FoldCoder",
+                "ExceptionPressure",
+                "PowerFruit",
+                "DishProtocol",
+                "TaskTemplate",
+                "SoupSample",
+                "MegaTag",
+                "ChecksumFold",
+                "AlgorithmSound",
+                "GroupBoolean",
+                "DynamicBase",
+                "CommandMull",
+                "InputDessert",
+                "TeaArchitect",
+                "PhoneFont",
+                "PhoneGreens",
+                "RepositoryDeprecated",
+                "CyberSalsa",
+                "ThreadArray",
+                "CharacterCookie",
+                "BurnerFile"
             );
 
 
@@ -72,7 +92,7 @@ define(
             function selectName()
             {
                 var appName = appNames[Math.floor(Math.random()*choices.length)];
-                gamedata.appName(appName);
+                gamedata.appName(appName + ".io");
             }
         };
     }
