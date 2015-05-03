@@ -19,7 +19,7 @@ define(
                 time,
                 gameTimerDisplay,
                 bank;
-            
+
             self.startingFunding = function() {
                 return startingFunding;
             }
@@ -30,7 +30,7 @@ define(
              * @param int
              * @return void
              */
-            self.gameTimer = function(_time) {
+            self.gameTimer = function(cb, _time) {
                 console.log('Time: ' + _time);
                 time = typeof _time === 'undefined' ? 10 : _time;
                 gameTimerDisplay = game.add.text(game.world.centerX, 100, 'Time: ' + time, { font: '12px Arial', fill: '#ffffff', align: 'center' });
@@ -38,7 +38,7 @@ define(
                 game.time.events.loop(Phaser.Timer.SECOND, updateTimer, this);
 
                 if(time == 0) {
-                    game.state.current.win();
+                    cb();
                 }
             };
 
@@ -168,15 +168,17 @@ define(
 
             self.bank = function(delta)
             {
+
                 if (typeof delta === 'number') {
                     bank += delta;
                     bank = clamp(0, bank, 99999999999999);
                 }
-                return bank;            
+
+                return bank;
             };
 
             self.tragetFundingIncrement = function() {
-                targetFunding = Math.floor(targetFunding * .1);
+                targetFunding = Math.floor(targetFunding * 0.1);
             }
         };
     }

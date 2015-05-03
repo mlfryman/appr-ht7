@@ -154,7 +154,7 @@ define(
 
             self.create = function(game)
             {
-                gamedata.gameTimer(30);
+                gamedata.gameTimer(win, 30);
 
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
@@ -209,9 +209,11 @@ define(
 
             function win()
             {
-                var bankDelta = gamedata.funding - gamedata.startingfunding; 
+                var bankDelta = gamedata.funding - gamedata.startingfunding;
+                console.log('bankDelta: ' + bankDelta);
                 gamedata.bank(bankDelta);
                 gamedata.tragetFundingIncrement();
+                console.log('GameData.bank: ' + gamedata.bank);
                 alert(gamedata.bank);
                 game.state.start('CeoInit');
             }

@@ -62,7 +62,7 @@ define(
             }
 
             self.update = function(game)
-            { 
+            {
 
             };
 
