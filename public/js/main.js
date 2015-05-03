@@ -18,9 +18,10 @@ require(
         'states/ceoResolution',
         'states/cloud',
         'states/kickstarter',
-        'ceoInit',
+        'states/ceoInit',
+        'states/loseState'
     ],
-    function(game, Menu, Sprint, GameData, EmergencyIT, CeoResolution, Cloud, KickStarter, CeoInit) {
+    function(game, Menu, Sprint, GameData, EmergencyIT, CeoResolution, Cloud, KickStarter, CeoInit, LoseState) {
         'use strict';
 
         var data = new GameData();
@@ -30,6 +31,7 @@ require(
         game.state.add('CeoResolution', new CeoResolution(game, data));
         game.state.add('Cloud', new Cloud(game));
         game.state.add('KickStarter', new KickStarter(game));
-        game.state.start('CeoInit', new ceoInit(game));
+        game.state.start('CeoInit', new CeoInit(game));
+        game.state.start('LoseState', new LoseState(game));
     }
 );

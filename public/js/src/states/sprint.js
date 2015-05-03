@@ -209,6 +209,11 @@ define(
             {
                 game.state.start('CeoInit');
             }
+
+            function lose()
+            {
+                game.state.start("LoseState");
+            }
         };
     }
 );

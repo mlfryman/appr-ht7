@@ -121,6 +121,11 @@ define(
                 bttn.y = 200;
 
             };
+
+            function lose()
+            {
+                game.state.start("LoseState");
+            }
         };
     }
 );

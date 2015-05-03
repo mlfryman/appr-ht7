@@ -91,6 +91,11 @@ define(
             {
                 game.state.start("CeoResolution");
             }
+
+            function lose(
+            {
+                game.state.start("LoseState");
+            })
         };
     }
 );
