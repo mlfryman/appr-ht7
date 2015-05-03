@@ -154,7 +154,7 @@ define(
 
             self.create = function(game)
             {
-                gamedata.timer(30);
+                gamedata.gameTimer(30);
 
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
@@ -214,7 +214,7 @@ define(
 
             function lose()
             {
-                game.state.start("LoseState");
+                game.state.start('LoseState');
             }
         };
     }

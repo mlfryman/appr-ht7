@@ -6,7 +6,7 @@ define(
         /**
          * This class represents our global game data
          */
-        return function GameData() {
+        return function GameData(game) {
 
             var self = this,
                 phasesComplete = 0,
@@ -15,19 +15,25 @@ define(
                 funding = startingFunding,
                 shares = 100,
                 multiplier = 1,
-                timer;
+                time,
+                gameTimerDisplay;
 
             /**
              * Creates global timer.
              *
-             * @param
+             * @param int
              * @return void
              */
-            self.timer = function(time) {
-                time = typeof time === 'undefined' ? 10 : time;
-                timerDisplay = game.add.text(game.world.centerX, 30, 'Time: ' + timer, { font: '12px Arial', fill: '#ffffff', align: 'center' });
-                // game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
+            self.gameTimer = function(_time) {
+                console.log('Time: ' + _time);
+                time = typeof _time === 'undefined' ? 10 : _time;
+                gameTimerDisplay = game.add.text(game.world.centerX, 100, 'Time: ' + time, { font: '12px Arial', fill: '#ffffff', align: 'center' });
+                game.time.events.add(Phaser.Timer.SECOND * 30, lose, this);
                 game.time.events.loop(Phaser.Timer.SECOND, updateTimer, this);
+
+                if(time == 0) {
+                    game.state.current.win();
+                }
             };
 
             /**
@@ -36,8 +42,13 @@ define(
              * @return void
              */
             function updateTimer() {
-                timer--;
-                timerDisplay.setText('Time: ' + timer);
+                console.log(time);
+                time--;
+                gameTimerDisplay.setText('Time: ' + time);
+            }
+
+            function lose() {
+                game.state.start('LoseState');
             }
 
             /**

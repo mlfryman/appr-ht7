@@ -89,13 +89,13 @@ define(
 
             function win()
             {
-                game.state.start("CeoResolution");
+                game.state.start('CeoResolution');
             }
 
-            function lose(
+            function lose()
             {
-                game.state.start("LoseState");
-            })
+                game.state.start('LoseState');
+            }
         };
     }
 );
