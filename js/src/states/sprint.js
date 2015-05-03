@@ -1,7 +1,7 @@
 define(
     [
         'Phaser',
-        'text!../../assets/SeedData.json',
+        'text!../../../assets/SeedData.json',
         'icons'
     ],
     function(Phaser, seed, icons)
