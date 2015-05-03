@@ -42,7 +42,9 @@ define(
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
                 ceo.y = game.height / 2;
-                var text  = game.add.text(0,0, ceoBegin, { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                var text  = game.add.text(0,0, ceoBegin, { font: "15px press_start_kregular", fill: 0x334455, align: "center" });
+                text.x = ceo.x + ceo.width /2 + 20;
+                text.y = ceo.y - ceo.height /2;
                 var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
                 space.onDown.add(startNextState);
             };
