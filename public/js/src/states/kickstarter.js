@@ -66,7 +66,7 @@ define(
                     setTimeout(function() {
                         btn.frame = 8;
                         ref = false;
-                    });
+                    }, 100);
                 }
             }
 
