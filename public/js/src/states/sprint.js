@@ -23,19 +23,16 @@ define(
                 leftDown,
                 progress,
                 progressCon,
-                operationalCost = .05,
+                operationalCost = 0.05,
                 killList = [];
 
-            function backToMenu(game)
-            {
+            function backToMenu(game) {
                 game.state.start('menu');
             }
 
-            function addCollectible(game)
-            {
+            function addCollectible(game) {
 
                 var collectible = cGroup.create(0, -100, 'collectible', 0);
-
                 collectible.item = getCollectibleData();
 
                 collectible.x = (game.width - collectible.width) * Math.random();
@@ -45,8 +42,7 @@ define(
 
             }
 
-            function updateCollectible(collectible, game)
-            {
+            function updateCollectible(collectible, game) {
                 if (collectible.x < collectible.width / 2) {
                     collectible.x = collectible.width / 2;
                     if (collectible.velocity.x < 0) {
@@ -82,9 +78,16 @@ define(
                 }
             }
 
+            function updateKillList() {
+                var y = 40;
+                for (var k in killList) {
+                     var item = game.add.text(k + ' ' + killList[k]);
+                }
+            }
+
             var maxPlayerVelocity = 21;
-            function updatePlayer(game)
-            {
+
+            function updatePlayer(game) {
                 if (leftDown) {
                     player.velocity.x -= 9;
                 } else if (player.velocity.x < 0) {
@@ -125,8 +128,8 @@ define(
             var timer = 0;
             var interval = 200;
             var current = interval;
-            self.update = function(game)
-            {
+
+            self.update = function(game) {
                 timer += game._deltaTime;
                 if (timer > current) {
                     addCollectible(game);
@@ -146,6 +149,7 @@ define(
 
                 progress.height = progressCon.height * gamedata.progress();
                 progress.y = 10 + progressCon.height - progress.height;
+
                 updateKillList();
             };
 
@@ -159,11 +163,10 @@ define(
                 gamedata.initFunding();
                 gamedata.gameTimer(win, 30);
 
-                sprintMusic = game.add.audio('sprintMusic', 0.4, true);
+                var sprintMusic = game.add.audio('sprintMusic', 0.4, true);
                 sprintMusic.play();
 
-                collectSound = game.add.audio('collegit actSound', 0.5);
-
+                var collectSound = game.add.audio('collectSound', 0.5);
 
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
@@ -206,11 +209,15 @@ define(
             };
 
             function collect(player, collectable) {
-                
+
                 killList[collectable.item.name] = collectable.item.value;
-                collectable.kill();
                 gamedata.funding(collectable.item.value);
+
+                var collectSound = game.add.audio('collectSound', 0.5);
                 collectSound.play();
+
+                collectable.kill();
+
 
                 if (gamedata.won()) {
                     win();
@@ -219,8 +226,7 @@ define(
                 }
             }
 
-            function win()
-            {
+            function win() {
                 sprintMusic.stop();
                 refreshState();
                 var bankDelta = gamedata.funding() - gamedata.startingFunding();
@@ -229,28 +235,19 @@ define(
                 game.state.start('CeoInit');
             }
 
-            function lose()
-            {
+            function lose() {
                 sprintMusic.stop();
                 refreshState();
                 game.state.start('LoseState');
             }
 
-            function refreshState()
-            {
+            function refreshState() {
                 sprintMusic.stop();
                 game.state.remove("Sprint");
                 var nextSprint = new Sprint(game, gamedata);
                 game.state.add("Sprint", nextSprint);
             }
 
-            function updateKillList()
-            {
-                var y = 40;
-                for (var k in killList){
-                     item = game.add.text(k + ' ' + killList[k]);  
-                }
-            }
         };
     }
 );

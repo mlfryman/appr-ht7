@@ -20,7 +20,7 @@ define(
                 gameTimerDisplay,
                 bank,
                 seenGames = [];
-            
+
             self.startingFunding = function() {
                 return startingFunding;
             }
@@ -49,9 +49,9 @@ define(
              * @return void
              */
             function updateTimer() {
-                console.log(time);
+                console.log('updateTimer() - time: ' + time);
                 time--;
-                gameTimerDisplay.setText('Time: ' + time);
+                gameTimerDisplay.setText('gameTimerDisplay - Time: ' + time);
             }
 
             function lose() {
