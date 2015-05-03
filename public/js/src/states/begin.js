@@ -74,6 +74,7 @@ define(
             self.create = function(game)
             {
                 var name = selectName();
+
                 var background = game.add.sprite(0, 0, 'bg_sprint');
                 background.width = game.width;
                 background.height = game.height;
@@ -81,7 +82,16 @@ define(
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
-                var btn = game.add.button(0,0,'continue', begin, this);
+                var text =  "Welcome to " + gamedata.name + "! We do things a little differenly around here, but you\'ll get the hang of it.";
+
+                var welcome = game.add.text(game.world.centerX,
+                                            game.world.centerY + 100,
+                                            text,
+                                            { font: "10px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                welcome.anchor.setTo(0.5);
+
+                var go = game.add.text(game.world.centerX, game.world.centerY + 400,'Press SPACE to CONTINUE', { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                go.anchor.setTo(0.5);
             };
 
             function begin()
@@ -91,7 +101,7 @@ define(
 
             function selectName()
             {
-                var appName = appNames[Math.floor(Math.random()*appNames.length)];
+                var appName = appNames[Math.floor(Math.random() * appNames.length)];
                 gamedata.appName(appName + ".io");
             }
         };
