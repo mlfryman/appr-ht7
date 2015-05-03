@@ -82,7 +82,11 @@ define(
             }
 
             self.initVals = function () {
-                return "this is the init text";
+                return "Since our launch, people have been asking \n" +
+                "what we're really doing. \n\n" +
+                "We need to use that popular \n" +
+                "crowd-funding thing to show everyone \n" +
+                "about we're saving the world!";
             }
 
             function refreshState()

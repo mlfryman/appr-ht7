@@ -172,7 +172,7 @@ define(
             }
 
             self.initVals = function () {
-                return "this is the init text";
+                return "So, my computer is having some errors. You're the tech guy, you can fix this right?";
             }
 
             function refreshState()
