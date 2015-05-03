@@ -39,7 +39,7 @@ define(
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
                 ceo.y = 200;
-                var text  = game.add.text(0,0, ceoBegin);
+                var text  = game.add.text(0,0, ceoBegin, { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 var btn = game.add.button(0,0,'continue', startNextState, this);
             };
 
@@ -57,8 +57,7 @@ define(
                 }
                 var choices = [];
                 for (var miniGame in miniGames) {
-                    
-                    if (played.indexOf(miniGame) === -1) {
+                    if (played.indexOf(miniGames[miniGame]) === -1) {
                         choices.push(miniGames[miniGame]);
                     }
                 }
