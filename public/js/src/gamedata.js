@@ -14,7 +14,30 @@ define(
                 targetFunding = 100,
                 funding = startingFunding,
                 shares = 100,
-                multiplier = 1;
+                multiplier = 1,
+                timer;
+
+            /**
+             * Creates global timer.
+             *
+             * @return void
+             */
+            self.timer = function(time) {
+                time = typeof time === 'undefined' ? 10 : time;
+                timerDisplay = game.add.text(game.world.centerX, 30, 'Time: ' + timer, { font: '12px Arial', fill: '#ffffff', align: 'center' });
+                // game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
+                game.time.events.loop(Phaser.Timer.SECOND, updateTimer, this);
+            };
+
+            /**
+             * Decrement the timer by one.
+             *
+             * @return void
+             */
+            function updateTimer() {
+                timer--;
+                timerDisplay.setText('Time: ' + timer);
+            }
 
             /**
              * Iterates the phasesComplete by one.
