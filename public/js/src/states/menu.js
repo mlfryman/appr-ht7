@@ -20,10 +20,11 @@ define(
                 game.load.image('pc', '/assets/img/lenovo-desktop-thinkcentre-m93m93p-tower-main.png');
                 game.load.image('powerbttn', '/assets/img/POwer-Button.jpg');
                 game.load.image('ceo', '/assets/img/ceo.jpg');
+                game.load.image('bottle', '/assets/img/bottle.png');
             };
 
             function startGame() {
-                game.state.start('emergencyIT');
+                game.state.start('drunkCoding');
             }
 
             self.update = function() {

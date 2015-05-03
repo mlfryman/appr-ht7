@@ -15,9 +15,18 @@ require(
         'states/sprint',
         'gamedata',
         'states/emergencyIT',
-        'states/ceoResolution'
+        'states/ceoResolution',
+        'states/drunkCoding'
     ],
-    function(game, Menu, Sprint, GameData, EmergencyIT, CeoResolution) {
+    function(
+        game,
+        Menu,
+        Sprint,
+        GameData,
+        EmergencyIT,
+        CeoResolution,
+        DrunkCoding
+    ) {
         'use strict';
 
         var data = new GameData();
@@ -25,6 +34,7 @@ require(
         game.state.add('sprint', new Sprint(game, data));
         game.state.add('emergencyIT', new EmergencyIT(game));
         game.state.add('ceoResolution', new CeoResolution(game, data));
+        game.state.add('drunkCoding', new DrunkCoding(game, data));
 
         game.state.start('menu');
     }
