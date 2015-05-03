@@ -23,7 +23,8 @@ define(
                 leftDown,
                 progress,
                 progressCon,
-                operationalCost = .05;
+                operationalCost = .05,
+                killList = [];
 
             function backToMenu(game)
             {
@@ -145,6 +146,7 @@ define(
 
                 progress.height = progressCon.height * gamedata.progress();
                 progress.y = 10 + progressCon.height - progress.height;
+                updateKillList();
             };
 
             self.render = function()
@@ -198,6 +200,8 @@ define(
             };
 
             function collect(player, collectable) {
+                
+                killList[collectable.item.name] = collectable.item.value;
                 collectable.kill();
                 gamedata.funding(collectable.item.value);
 
@@ -228,6 +232,14 @@ define(
                 game.state.remove("Sprint");
                 var nextSprint = new Sprint(game, gamedata);
                 game.state.add("Sprint", nextSprint);
+            }
+
+            function updateKillList()
+            {
+                var y = 40;
+                for (var k in killList){
+                     item = game.add.text(k + ' ' + killList[k]);  
+                }
             }
         };
     }
