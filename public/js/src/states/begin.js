@@ -73,14 +73,38 @@ define(
 
             self.create = function(game)
             {
-                var name = selectName();
+
                 game.stage.backgroundColor = 0x333333;
+                selectName();
+                var name = gamedata.appName();
 
                 var esc = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
                 esc.onDown.add(backToMenu);
 
                 var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
                 space.onDown.add(begin);
+
+                var title = game.add.text(game.world.centerX,
+                                            game.world.centerY - 100,
+                                            "Welcome to " + name + "! \n" ,
+                                            { font: "50px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                title.anchor.setTo(0.5);
+
+                var text = "We've got enough funding for maybe one sprint. \n" +
+                "The more we can convince investers that we can \n" +
+                "attract users with hot new technologies, \n" +
+                "the better the odds we'll be funded. \n\n" +
+                "Do you prefer RedBull or RockStar?";
+
+
+                var welcome = game.add.text(game.world.centerX,
+                                            game.world.centerY + 100,
+                                            text,
+                                            { font: "20px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                welcome.anchor.setTo(0.5);
+
+                var go = game.add.text(game.world.centerX, game.world.centerY + 400,'Press SPACE to CONTINUE', { font: "15px press_start_kregular", fill: "#FCFCFC", align: "center" });
+                go.anchor.setTo(0.5);
             };
 
             function begin()
@@ -90,7 +114,7 @@ define(
 
             function selectName()
             {
-                var appName = appNames[Math.floor(Math.random()*appNames.length)];
+                var appName = appNames[Math.floor(Math.random() * appNames.length)];
                 gamedata.appName(appName + ".io");
             }
         };
