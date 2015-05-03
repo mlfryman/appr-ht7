@@ -6,7 +6,7 @@ define(
         /**
          * This class represents our global game data
          */
-        return function GameData() {
+        return function GameData(game) {
 
             var self = this,
                 phasesComplete = 0,
@@ -16,6 +16,42 @@ define(
                 shares = 100,
                 multiplier = 1,
                 appName = '';
+                time,
+                gameTimerDisplay;
+
+            /**
+             * Creates global timer.
+             *
+             * @param int
+             * @return void
+             */
+            self.gameTimer = function(_time) {
+                console.log('Time: ' + _time);
+                time = typeof _time === 'undefined' ? 10 : _time;
+                gameTimerDisplay = game.add.text(game.world.centerX, 100, 'Time: ' + time, { font: '12px Arial', fill: '#ffffff', align: 'center' });
+                game.time.events.add(Phaser.Timer.SECOND * 30, lose, this);
+                game.time.events.loop(Phaser.Timer.SECOND, updateTimer, this);
+
+                if(time == 0) {
+                    game.state.current.win();
+                }
+            };
+
+            /**
+             * Decrement the timer by one.
+             *
+             * @return void
+             */
+            function updateTimer() {
+                console.log(time);
+                time--;
+                gameTimerDisplay.setText('Time: ' + time);
+            }
+
+            function lose() {
+                game.state.start('LoseState');
+            }
+
 
             /**
              * Iterates the phasesComplete by one.

@@ -18,7 +18,7 @@ define(
             }
 
             self.update = function(game)
-            { 
+            {
 
             };
 
@@ -45,7 +45,7 @@ define(
             function win()
             {
                 self.calculateMoney();
-                game.state.start("CeoResolution");
+                game.state.start('CeoResolution');
             }
 
             function donateNow()
@@ -55,13 +55,13 @@ define(
 
             function calculateMoney()
             {
-                var multiplier = Math.floor(count\20) /10 + 1;
+                var multiplier = (Math.floor(count/20)/10) + 1;
                 gamedata.setMultiplier(multiplier);
             }
 
             function lose()
             {
-                game.state.start("LoseState");
+                game.state.start('LoseState');
             }
         };
     }

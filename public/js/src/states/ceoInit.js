@@ -8,15 +8,15 @@ define(
 
         return function ceoInit(game, gamedata) {
             var self     = this;
-            var played   = new array();
+            var played   = [];
             var ceoBegin = '';
             var nextGame = '';
 
-            var miniGames = new array(
+            var miniGames = [
                 "EmergencyIT",
                 "KickStarter",
                 "Cloud"
-            );
+            ];
 
             function backToMenu(game)
             {
@@ -24,7 +24,7 @@ define(
             }
 
             self.update = function(game)
-            { 
+            {
 
             };
 
@@ -35,7 +35,7 @@ define(
 
             self.create = function(game)
             {
-                setUpMyShit();   
+                setUpMyShit();
                 var ceo = game.add.image(0,0,'ceo');
                 ceo.anchor.set(.5, .5);
                 ceo.x = 300;
