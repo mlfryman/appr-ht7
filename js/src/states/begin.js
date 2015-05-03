@@ -93,12 +93,12 @@ define(
                 var text = "We've got enough funding for maybe one sprint. \n" +
                 "The more we can convince investers that we can \n" +
                 "attract users with hot new technologies, \n" +
-                "the better the odds we'll be funded. \n\n" +
+                "the better the odds we'll be funded. \n" +
                 "Do you prefer RedBull or RockStar?";
 
 
                 var welcome = game.add.text(game.world.centerX,
-                                            game.world.centerY + 100,
+                                            game.world.centerY + 75,
                                             text,
                                             { font: "20px press_start_kregular", fill: "#FCFCFC", align: "center" });
                 welcome.anchor.setTo(0.5);
